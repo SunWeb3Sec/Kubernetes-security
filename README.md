@@ -2,11 +2,11 @@
 
 Share my k8s research materials that I did two years ago.
 
-[Kubernetes pentesting](https://github.com/SunWeb3Sec/Kubernetes-security/edit/main/README.md#kubernetes-pentesting)
+[Kubernetes pentesting](https://github.com/SunWeb3Sec/Kubernetes-security#kubernetes-pentesting)
 
-[Kubernetes hardening](https://github.com/SunWeb3Sec/Kubernetes-security/edit/main/README.md#kubernetes-hardening)
+[Kubernetes hardening](https://github.com/SunWeb3Sec/Kubernetes-security#kubernetes-hardening)
 
-[Kubernetes hunting tools](https://github.com/SunWeb3Sec/Kubernetes-security/edit/main/README.md#kubernetes-hunting-tools)
+[Kubernetes hunting tools](https://github.com/SunWeb3Sec/Kubernetes-security#kubernetes-hunting-tools)
 
 ## Kubernetes pentesting
 
@@ -280,5 +280,13 @@ Quality Of Service (QoS)
   * Don’t automount Service Tokens into Pods if your services don’t need to communicate to the API
   * Consider abstracting direct console access to the cluster away (ie Terraform, Spinnaker) so that none of your developers have cluster-admin permission.
 
-
 ## Kubernetes hunting tools
+* kubiscan
+* Kube hunter
+* Kube bench
+* kubeaudit 
+* kubescore 
+* checkov
+* kubesec
+* kubesploit
+* Kubernetes Goat
