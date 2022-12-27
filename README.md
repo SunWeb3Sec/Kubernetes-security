@@ -281,12 +281,12 @@ Quality Of Service (QoS)
   * Consider abstracting direct console access to the cluster away (ie Terraform, Spinnaker) so that none of your developers have cluster-admin permission.
 
 ## Kubernetes hunting tools
-* kubiscan
-* Kube hunter
-* Kube bench
-* kubeaudit 
-* kubescore 
-* checkov
-* kubesec
-* kubesploit
-* Kubernetes Goat
+* [kubiscan](https://github.com/cyberark/KubiScan)
+* [Kube hunter](https://github.com/aquasecurity/kube-hunter)
+* [Kube bench](https://github.com/aquasecurity/kube-bench)
+* [kubeaudit](https://github.com/Shopify/kubeaudit) 
+* [kubescore](https://github.com/zegl/kube-score)
+* [checkov](https://github.com/bridgecrewio/checkov)
+* [kubesec](https://github.com/controlplaneio/kubesec)
+* [kubesploit](https://github.com/cyberark/kubesploit)
+* [Kubernetes Goat](https://github.com/madhuakula/kubernetes-goat)
