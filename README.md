@@ -66,7 +66,7 @@ This repo aims to how to secure Your Kubernetes (K8s) environment.
   * Privilege escalation
     * Insecure deployment file 
     * Insecure pod security policy (AllowPrivilegeEscalation, MustRunAsNonRoot and privileged) Bypass the PSP to deploy a Pod
-    Bad Pod #1: Everything allowed
+      * Bad Pod #1: Everything allowed
       * Bad Pod #2: Privileged and hostPid
       * Bad Pod #3: Privileged only
       * Bad Pod #4: hostPath only
