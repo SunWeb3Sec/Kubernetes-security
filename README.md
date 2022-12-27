@@ -1,6 +1,6 @@
-# Kubernetes pentesting and hardening
+# Kubernetes pentesting, hardening and hunting tools
 
-Share my k8s research material that I did two years ago.
+Share my k8s research materials that I did two years ago.
 
 [Kubernetes pentesting](https://github.com/SunWeb3Sec/Kubernetes-security/edit/main/README.md#kubernetes-pentesting)
 
