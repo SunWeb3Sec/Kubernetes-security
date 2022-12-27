@@ -174,4 +174,111 @@ Share my k8s research materials that I did two years ago.
 
 
 ## Kubernetes hardening
+* Secure EKS Cluster
+  * Cloud Infrastructure Security
+  * VPC Layout
+  * Dedicated IAM Role for EKS Cluster Creation
+  * Cluster Resource Tagging
+  * Control SSH Access to Nodes
+  * EC2 Security Groups for Nodes
+  * Don’t Install the Kubernetes Dashboard
+  * AWS Fargate for Nodeless EKS (AWS does not recommend running sensitive workloads on Fargate.)
+  * IAM Policies and the Principle of Least Privilege( cluster autoscaler by using the IAM policy Condition)
+  * Isolating Critical Cluster Workloads
+  * Manage IAM Credentials for Pods
+* Authentication
+  * --anonymous-auth=false (Default:true)
+  * To enable X509 client certificate authentication to the kubelet's HTTPS endpoint
+* Authorization (RBAC, Node, ABAC or Webhook)
+  * –authorization-mode is not set to AlwaysAllow, as the more secure Webhook mode will delegate authorization decisions to the Kubernetes API server.
+  * Do not grant write access to ConfigMaps in ClusterRoles, which apply globally across all namespaces. Use RoleBindings to limit these permissions to specific namespaces.
+* Admission Control
+  * Gatekeeper
+  * Enable NodeRestriction admission plugin to limit a kubelet to modify its own node) pods and pod status
+  * AlwaysPullImages
+  * DenyEscalatingExec
+  * ResourceQuota
+  * LimitRanger
+* Pod security. Admins can control specific actions.
+  * Pod security policy
+  * Restrict the containers that can run as privileged (Delete the default pod security policy)
+  * Do not run processes in containers as root
+  * Do not allow privileged escalation
+  * Restrict the use of hostPath or if hostPath is necessary restrict which prefixes can be used and configure the volume as read-only (By default pods that run as root will have write access to the file system exposed by hostPath) prevent symbolic links threat
+  * Set requests and limits for each container to avoid resource contention and DoS attacks
+Quality Of Service (QoS)
+  * Privileged: false
+  * runAsUser:    rule: 'MustRunAsNonRoot'
+  * AllowPrivilegeEscalation=false
+* Multi-tenancy
+  * Namespace / RBAC
+  * Node selector
+  * Anti-Affinity Rules
+  * Taints / Tolerations
+* Network security
+  * Network policies. The default is that all pods talk to all pods. Consider changing it.
+  * Traffic control
+  * Network Policies (Calico)
+    * Create a default deny policy
+    * Create a rule to allow DNS queries
+    * Incrementally add rules to selectively allow the flow of traffic between namespaces/pods
+    * Log network traffic metadata
+    * Use encryption with AWS load balancers
+  * Security Groups
+  * Encryption in transit
+  * Service Mesh
+  * Container Network Interfaces (CNIs)
+  * Nitro Instances
+* Kubernetes secrets. Use secrets to store sensitive data instead of config maps.
+* ETCD
+  * PKI-based authentication for etcd
+  * Encryption at rest
+  * etcd peer-to-peer TLS
+  * Kubernetes API to etcd cluster TLS
+* Image Security
+  * Private registries
+  * Image signing (use only signed images from trusted registry)
+  * Image vulnerability check
+* Container security
+  * Dockerfile
+  * Do not expose the Docker daemon socket
+  * Set a non-root user
+  * Add –no-new-privileges flag
+  * Prevent Docker in docker (DIND)
+  * Docker Bench for Security
+  * Preventing containers from loading unwanted kernel modules
+    * /etc/modprobe.d/kubernetes-blacklist.conf
+* Runtime security
+  * SELinux
+  * AppArmor (EX: enforce AppArmor profiles on pods via Pod Security Policies. Prevent the attack pods from writing to files in the host’s filesystem)
+  * Seccomp 
+  * Falco
+* Detective Controls (Audit logging. Watch them!)
+  * Auditing and logging
+  * Enable audit logs
+  * Create alarms for suspicious events
+  * Analyzing Log Data with CloudWatch Logs Insights
+  * Audit your CloudTrail logs (IRSA)
+  * Falco log
+  * Audit all the container's activity
+* Infrastructure Security
+  * Use an OS optimized for running containers
+  * Treat your infrastructure as immutable and automate the replacement of your worker nodes
+  * Periodically run kube-bench to verify compliance with CIS benchmarks for Kubernetes
+  * Minimize access to worker nodes
+  * Deploy workers onto private subnets
+  * Run Amazon Inspector to assess hosts for exposure, vulnerabilities, and deviations from best practices
+  * Harden the host (always patch)
+  * Separate partitions for containers
+* Defense
+  * Don’t allow privileged Pods
+  * Don't allow a container to become root
+  * Don’t allow host mounts at all
+  * Consider a network plugin or Network Policy for segmentation
+  * Only use images and registries that you trust and don’t rely on Docker Hub as a trusted source
+  * Keep roles and role bindings as strict as possible
+  * Don’t automount Service Tokens into Pods if your services don’t need to communicate to the API
+  * Consider abstracting direct console access to the cluster away (ie Terraform, Spinnaker) so that none of your developers have cluster-admin permission.
+
+
 ## Kubernetes hunting tools
